@@ -13,9 +13,9 @@ public class JacksonMapperTest {
     private final String serialization = "{\"name\":\"John\",\"x\":\"1\",\"y\":\"2\"}";
 
     /*
-     * jackson 2.8.10: passed
+     * jackson 2.8.10: passes
      *
-     * jackson 2.11.1: failed
+     * jackson 2.11.1: fails
      */
     @Test
     public void unwrapping1_jsonCreator_and_JsonProperty() throws Exception {
@@ -32,9 +32,9 @@ public class JacksonMapperTest {
     }
 
     /*
-     * jackson 2.8.10: failed
+     * jackson 2.8.10: fails
      *
-     * jackson 2.11.1: failed
+     * jackson 2.11.1: fails
      */
     @Test
     public void unwrapping2_constructorProperties() throws Exception {
@@ -51,9 +51,9 @@ public class JacksonMapperTest {
     }
 
     /*
-     * jackson 2.8.10: passed
+     * jackson 2.8.10: passes
      * 
-     * jackson 2.11.1: passed
+     * jackson 2.11.1: passes
      */
     @Test
     public void unwrapping3_setter() throws Exception {
@@ -72,9 +72,9 @@ public class JacksonMapperTest {
     }
 
     /*
-     * jackson 2.8.10: passed
+     * jackson 2.8.10: passes
      *
-     * jackson 2.11.1: failed
+     * jackson 2.11.1: fails
      */
     @Test
     public void unwrapping4_constructor_with_JsonUnwrapped() throws Exception {
@@ -91,9 +91,9 @@ public class JacksonMapperTest {
     }
 
     /*
-     * jackson 2.8.10: passed
+     * jackson 2.8.10: passes
      *
-     * jackson 2.11.1: passed
+     * jackson 2.11.1: passes
      */
     @Test
     public void unwrapping5_ReadOnly() throws Exception {
@@ -103,6 +103,26 @@ public class JacksonMapperTest {
 
         // when
         Unwrapping5 res = objectMapper.readValue(serialization, Unwrapping5.class);
+
+        // then
+        assertThat(res).isEqualTo(expected);
+
+    }
+
+    /*
+     * jackson 2.8.10: fails
+     *
+     * jackson 2.11.1: passes
+     */
+    @Test
+    public void unwrapping6_only_set_unwrapped() throws Exception {
+
+        // given
+        Unwrapping6 expected = new Unwrapping6("John");
+        expected.setLocation(new Location(1, 2));
+
+        // when
+        Unwrapping6 res = objectMapper.readValue(serialization, Unwrapping6.class);
 
         // then
         assertThat(res).isEqualTo(expected);
