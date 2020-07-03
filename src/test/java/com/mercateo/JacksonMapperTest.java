@@ -93,13 +93,13 @@ public class JacksonMapperTest {
     /*
      * jackson 2.8.10: passed
      *
-     * jackson 2.11.1: failed
+     * jackson 2.11.1: passed
      */
     @Test
     public void unwrapping5_ReadOnly() throws Exception {
 
         // given
-        Unwrapping5 expected = new Unwrapping5("John", new Location(1, 2));
+        Unwrapping5 expected = new Unwrapping5("John", 1, 2);
 
         // when
         Unwrapping5 res = objectMapper.readValue(serialization, Unwrapping5.class);

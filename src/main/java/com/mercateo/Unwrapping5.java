@@ -20,8 +20,8 @@ class Unwrapping5 {
     private Location location;
 
     @JsonCreator
-    public Unwrapping5(@JsonProperty("name") String name, @JsonProperty("location") Location location) {
+    public Unwrapping5(@JsonProperty("name") String name, @JsonProperty("x") int x, @JsonProperty("y") int y) {
         this.name = name;
-        this.location = location;
+        this.location = new Location(x, y);
     }
 }
