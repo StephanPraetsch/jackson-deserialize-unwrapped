@@ -88,6 +88,7 @@ class Unwrapping3 {
     @Getter
     @Setter
     private Location location;
+}
 ```
 This **succeeds** for `2.8.10` and `2.11.1`. The downside is that this class is highly mutable.
 
