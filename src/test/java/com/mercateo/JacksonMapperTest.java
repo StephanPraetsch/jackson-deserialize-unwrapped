@@ -71,4 +71,23 @@ public class JacksonMapperTest {
 
     }
 
+    /*
+     * jackson 2.8.10: passed
+     *
+     * jackson 2.11.1: failed
+     */
+    @Test
+    public void jsonCreator_and_JsonProperty_and_JsonUnwrapped() throws Exception {
+
+        // given
+        Unwrapping4 expected = new Unwrapping4("John", new Location(1, 2));
+
+        // when
+        Unwrapping4 res = objectMapper.readValue(serialization, Unwrapping4.class);
+
+        // then
+        assertThat(res).isEqualTo(expected);
+
+    }
+
 }

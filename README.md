@@ -43,7 +43,15 @@ see [Unwrapping1.java](src/main/java/com/mercateo/Unwrapping1.java)
     @JsonCreator
     public Unwrapping1(@JsonProperty("name") String name, @JsonProperty("location") Location location) {
 ```
-This succeeds for jackson version `2.8.10`, but fails for `2.11.1` with `@JsonUnwrapped`: combination not yet supported`. Not *yet* supported, huh?
+This succeeds for jackson version `2.8.10`, but fails for `2.11.1` with `@JsonUnwrapped`: combination not yet supported. Not *yet* supported, huh?
+
+## an explicit constructor with @JsonCreator and @JsonProperty and @JsonUnwrapped
+see [Unwrapping4.java](src/main/java/com/mercateo/Unwrapping4.java)
+```java
+    @JsonCreator
+    public Unwrapping4(@JsonProperty("name") String name, @JsonUnwrapped Location location) {
+```
+same as `@JsonProperty` instead of `@JsonUnwrapped`: Succeeds for `2.8.10`, but fails for `2.11.1` with *combination not yet supported*.
 
 ## an explicit constructor with @ConstructorProperties
 see [Unwrapping2.java](src/main/java/com/mercateo/Unwrapping2.java), this is what [Lombok](https://projectlombok.org/) will produce for you when you use `@Value` or `@Data`
