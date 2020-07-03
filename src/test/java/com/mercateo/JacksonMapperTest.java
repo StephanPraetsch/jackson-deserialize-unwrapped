@@ -18,7 +18,7 @@ public class JacksonMapperTest {
      * jackson 2.11.1: failed
      */
     @Test
-    public void jsonCreator_and_JsonProperty() throws Exception {
+    public void unwrapping1_jsonCreator_and_JsonProperty() throws Exception {
 
         // given
         Unwrapping1 expected = new Unwrapping1("John", new Location(1, 2));
@@ -37,7 +37,7 @@ public class JacksonMapperTest {
      * jackson 2.11.1: failed
      */
     @Test
-    public void constructorProperties() throws Exception {
+    public void unwrapping2_constructorProperties() throws Exception {
 
         // given
         Unwrapping2 expected = new Unwrapping2("John", new Location(1, 2));
@@ -56,7 +56,7 @@ public class JacksonMapperTest {
      * jackson 2.11.1: passed
      */
     @Test
-    public void setter() throws Exception {
+    public void unwrapping3_setter() throws Exception {
 
         // given
         Unwrapping3 expected = new Unwrapping3();
@@ -77,13 +77,32 @@ public class JacksonMapperTest {
      * jackson 2.11.1: failed
      */
     @Test
-    public void jsonCreator_and_JsonProperty_and_JsonUnwrapped() throws Exception {
+    public void unwrapping4_constructor_with_JsonUnwrapped() throws Exception {
 
         // given
         Unwrapping4 expected = new Unwrapping4("John", new Location(1, 2));
 
         // when
         Unwrapping4 res = objectMapper.readValue(serialization, Unwrapping4.class);
+
+        // then
+        assertThat(res).isEqualTo(expected);
+
+    }
+
+    /*
+     * jackson 2.8.10: passed
+     *
+     * jackson 2.11.1: failed
+     */
+    @Test
+    public void unwrapping5_ReadOnly() throws Exception {
+
+        // given
+        Unwrapping5 expected = new Unwrapping5("John", new Location(1, 2));
+
+        // when
+        Unwrapping5 res = objectMapper.readValue(serialization, Unwrapping5.class);
 
         // then
         assertThat(res).isEqualTo(expected);
