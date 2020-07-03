@@ -8,7 +8,7 @@ means you misconfigured `@JsonUnwrapped` in your Java file.
 
 ## TL;DR
 deserialization of a field with `@JsonUnwrapped` reliably works
-* for mutable classes that have **setter** and a **no args constructor** ([click](#set-unwrapped-field-only-with-setter))
+* for mutable classes that have **setter** and a **no args constructor** ([click](#mutable-fields-with-setter-and-no-args-constructor))
 * when you set the unwrapped field to `READ_ONLY` ([click](#read_only-at-jsonunwrapped-field))
 
 ## motivation for JsonUnwrapped
